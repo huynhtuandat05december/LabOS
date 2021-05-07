@@ -1,0 +1,30 @@
+Question 1:What the output will be at LINE A?
+Answer: 
+    Chương trình sẽ in ra: PARENT value = 5
+    Giải thích: 
+    Khi lệnh fork() được gọi, một process (process cha) tạo ra một process mới (process con). Hàm fork() là một hàm đặc biệt sẽ trả về hai giá trị. Bên trong process con, hàm fork() sẽ trả về giá trị 0, bên trong process cha, hàm fork() trả về giá trị nguyên là PID của process con vừa tạo (> 0). Nếu không tách được process, hàm sẽ trả về -1. 
+Process cha và process con sẽ có các vùng nhớ khác nhau. Vì vậy khi (pid == 0) thì process con sẽ thực hiện value += 5, mà hoàn toàn không ảnh hưởng đến value ở process cha. Nên khi in giá trị value ở process cha, value vẫn giữ giá trị là 5.
+
+Question 2: How many processes are created by the program shown below, including the initial
+parent process? How many process are created when n fork() called?
+Answer: 
+    Có tất cả 8 process được tạo ra. fork() đầu tiên tạo ra 1 process, vậy có tất cả 2 process. fork() được thực thi bởi 2 process nên có tất cả 4 process.
+fork() cuối cùng được thực thi bởi 4 process nên có tổng cộng 8 process.
+Vậy khi n fork() được gọi sẽ có 2^n process được tạo ra.
+
+Question 3:When a process creates a new process using the fork() operation, which of the
+following states is shared between the parent process and the child process? Why?
+A. Stack
+B. Heap
+C. Shared memory segments
+Answer: C. Bởi stack và heap chỉ sẽ tạo ra các bản sao mới khi 1 process được tạo, chỉ có memory segments
+là được chia sẻ giữa process cha và process con.
+
+Question 4: What process id (PID) and process group id are used for?
+Answer: 
+    Process id(PID) dùng để định danh duy nhất tiến trình đó trong hệ thống. 
+    Ví dụ system call kill() cho phép một process gửi tín hiệu tới một process khác thông qua PID của process nhận. PID cũng rất hữu ích khi ta cần định danh cho process, ví dụ như dùng PID để tạo tên cho file...
+
+    Process group id: Mọi process thuộc một process group được xác định bằng giá trị ID process group. 
+    Khi một process tạo ra các process con, hệ điều hành sẽ tự động tạo một process group. Process gốc ban đầu được gọi là process leader. PID của process leader sẽ giống với ID process group của nó
+    Nếu process leader nhận được một tín hiệu ngắt hoặc treo máy khiến nó kết thúc, thì tất cả các process trong nhóm của nó cũng sẽ được chuyển cùng một tín hiệu kết thúc.
