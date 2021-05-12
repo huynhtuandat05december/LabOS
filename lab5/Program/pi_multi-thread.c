@@ -44,10 +44,10 @@ int main(int argc, const char *argv[])
 
     long totalPoints = atol(argv[1]);
     int threadCount;
-    if (totalPoints >= 1000)
+    if (totalPoints >= 10000)
+        threadCount = 10000;
+    else if (totalPoints >= 1000)
         threadCount = 1000;
-    else if (totalPoints >= 100)
-        threadCount = 100;
     else
         threadCount = 1;
     pointsPerThread = totalPoints / threadCount;
