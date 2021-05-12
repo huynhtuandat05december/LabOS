@@ -8,9 +8,9 @@ long inCircle = 0;
 int main(int argc, const char *argv[])
 {
 
-    clock_t start, end;
-    double time_use;
-    start = clock();
+    // clock_t start, end;
+    // double time_use;
+    // start = clock();
     if (argc != 2)
     {
         fprintf(stderr, "usage: ./pi <total points>\n");
@@ -31,10 +31,10 @@ int main(int argc, const char *argv[])
             inCircle++;
         }
     }
-    end = clock();
-    time_use = (double)(end - start) / CLOCKS_PER_SEC;
+    // end = clock();
+    // time_use = (double)(end - start) / CLOCKS_PER_SEC;
 
     printf("%f\n", (4. * (double)inCircle) / totalPoints);
-    printf("%f seconds", time_use);
+    // printf("%f seconds", time_use);
     return 0;
 }
